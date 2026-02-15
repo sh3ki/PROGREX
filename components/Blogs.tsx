@@ -43,91 +43,87 @@ export default function Blogs() {
   };
 
   return (
-    <section id="blogs" className="relative py-20 bg-gradient-to-b from-dark-secondary to-dark overflow-hidden">
-      <div ref={ref} className="relative z-10 container mx-auto px-6">
-        {/* Section Header */}
+    <section id="blogs" className="section-shell relative">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 right-0 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl opacity-50" />
+      
+      <div ref={ref} className="section-container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="section-header"
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 bg-gradient-to-r from-white to-accent bg-clip-text text-transparent">
-            Latest Insights
+          <span className="section-badge">Blog & Insights</span>
+          <h2 className="section-title">
+            Latest <span className="section-title-gradient">Insights</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Stay updated with our tech and business blogs
+          <p className="section-subtitle">
+            Practical ideas and technology insights from our team for leaders building digital-first businesses.
           </p>
         </motion.div>
 
-        {/* Blog Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogs.map((blog, index) => (
             <motion.article
               key={blog.title}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="group bg-dark-secondary rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer"
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="group gradient-border cursor-pointer"
             >
-              {/* Blog Image */}
-              <div className="relative h-48 overflow-hidden">
-                <motion.img
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.5 }}
-                  src={blog.image}
-                  alt={blog.title}
-                  className="w-full h-full object-cover"
-                />
-                
-                {/* Category Badge */}
-                <motion.span
-                  whileHover={{ scale: 1.1 }}
-                  className="absolute top-4 left-4 px-3 py-1 bg-primary/90 text-white rounded-full text-sm font-semibold backdrop-blur-sm"
-                >
-                  {blog.category}
-                </motion.span>
-
-                {/* Dark Overlay on Hover */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  className="absolute inset-0 bg-dark/60 transition-opacity duration-300"
-                ></motion.div>
-              </div>
-
-              {/* Blog Content */}
-              <div className="p-6">
-                <div className="flex items-center text-sm text-gray-500 mb-3">
-                  <span>{blog.date}</span>
-                  <span className="mx-2">•</span>
+              <div className="gradient-border-inner p-0 h-full flex flex-col">
+                {/* Image Section */}
+                <div className="relative h-56 overflow-hidden rounded-t-2xl">
+                  <motion.img
+                    whileHover={{ scale: 1.15 }}
+                    transition={{ duration: 0.6 }}
+                    src={blog.image}
+                    alt={blog.title}
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  {/* Gradient Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* Category Badge */}
                   <motion.span
-                    initial={{ x: -20, opacity: 0 }}
-                    whileHover={{ x: 0, opacity: 1 }}
-                    className="flex items-center"
+                    whileHover={{ scale: 1.1 }}
+                    className="absolute top-4 left-4 px-4 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full text-xs font-bold uppercase tracking-wider shadow-lg"
                   >
-                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-                    </svg>
-                    {blog.readTime}
+                    {blog.category}
                   </motion.span>
+
+                  {/* Read Time Badge */}
+                  <span className="absolute bottom-4 right-4 px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-semibold rounded-full">
+                    {blog.readTime}
+                  </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary-light transition-colors duration-300">
-                  {blog.title}
-                </h3>
+                {/* Content Section */}
+                <div className="p-6 flex-grow flex flex-col">
+                  <div className="flex items-center text-sm text-gray-400 mb-3">
+                    <svg className="w-4 h-4 mr-1.5 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                    </svg>
+                    <span>{blog.date}</span>
+                  </div>
 
-                <p className="text-gray-400 mb-4 line-clamp-2">
-                  {blog.excerpt}
-                </p>
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:gradient-text transition-all duration-300">
+                    {blog.title}
+                  </h3>
 
-                {/* Read More Link */}
-                <a href="#" className="inline-flex items-center text-primary-light hover:text-accent transition-colors duration-300 font-semibold">
-                  Read Article
-                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
+                  <p className="text-gray-400 leading-relaxed mb-6 flex-grow">
+                    {blog.excerpt}
+                  </p>
+
+                  <button className="inline-flex items-center gap-2 text-purple-400 hover:text-pink-400 font-semibold transition-colors duration-300 group-hover:gap-4">
+                    <span>Read Article</span>
+                    <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </motion.article>
           ))}
@@ -137,14 +133,14 @@ export default function Blogs() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center"
         >
           <button
             onClick={() => scrollToSection('contact')}
-            className="border-2 border-primary text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gradient-purple hover:border-transparent transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/50"
+            className="btn-ghost"
           >
-            Explore All Articles
+            Explore More Insights
           </button>
         </motion.div>
       </div>
