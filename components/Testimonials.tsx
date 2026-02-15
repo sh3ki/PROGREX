@@ -45,73 +45,61 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="relative py-20 bg-dark overflow-hidden">
-      {/* Animated Pattern Background */}
-      <div className="absolute inset-0 opacity-5">
-        <motion.div
-          animate={{
-            backgroundPosition: ['0% 0%', '100% 100%'],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: 'reverse',
-          }}
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle, #7C3AED 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-          }}
-        ></motion.div>
+    <section id="testimonials" className="section-shell relative">
+      {/* Background Effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-400/15 to-purple-700/15 rounded-full blur-3xl" />
       </div>
 
-      <div ref={ref} className="relative z-10 container mx-auto px-6">
-        {/* Section Header */}
+      <div ref={ref} className="section-container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="section-header"
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 bg-gradient-to-r from-white to-accent bg-clip-text text-transparent">
-            Trusted by Industry Leaders
+          <span className="section-badge">Testimonials</span>
+          <h2 className="section-title">
+            Trusted by <span className="section-title-gradient">Industry Leaders</span>
           </h2>
+          <p className="section-subtitle">
+            Real feedback from teams that partnered with ProgreX to ship high-impact digital products.
+          </p>
         </motion.div>
 
-        {/* Testimonial Carousel */}
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-5xl mx-auto">
           <div className="overflow-hidden">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5 }}
-              className="bg-dark-secondary border border-dark-tertiary rounded-2xl p-8 md:p-12"
+              className="glass-card-premium p-10 md:p-16"
             >
-              {/* Company Logo */}
-              <div className="flex justify-center mb-6">
-                <div className="w-20 h-20 bg-gradient-purple rounded-xl flex items-center justify-center">
-                  <span className="text-white font-bold text-2xl">
-                    {testimonials[currentIndex].logo}
-                  </span>
+              {/* Quote Icon */}
+              <div className="flex justify-center mb-8">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-800 flex items-center justify-center shadow-2xl">
+                  <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
                 </div>
               </div>
 
-              {/* Quote */}
-              <blockquote className="text-xl md:text-2xl text-gray-300 text-center mb-8 italic">
-                "{testimonials[currentIndex].quote}"
+              {/* Quote Text */}
+              <blockquote className="text-2xl md:text-3xl text-white text-center mb-10 italic leading-relaxed font-light">
+                &ldquo;{testimonials[currentIndex].quote}&rdquo;
               </blockquote>
 
-              {/* Rating */}
-              <div className="flex justify-center mb-6">
+              {/* Stars */}
+              <div className="flex justify-center gap-2 mb-8">
                 {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
                   <motion.svg
                     key={i}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: i * 0.1 }}
-                    className="w-6 h-6 text-accent"
+                    initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    className="w-7 h-7 text-yellow-400"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -120,46 +108,44 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              {/* Author */}
+              {/* Author Info */}
               <div className="text-center">
-                <p className="text-white font-semibold text-lg">
+                <p className="text-white font-bold text-xl mb-1 gradient-text">
                   {testimonials[currentIndex].name}
                 </p>
-                <p className="text-gray-400">
+                <p className="text-gray-400 text-lg">
                   {testimonials[currentIndex].title}
                 </p>
               </div>
             </motion.div>
           </div>
 
-          {/* Navigation Arrows */}
           <button
             onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 w-12 h-12 bg-dark-secondary border border-primary rounded-full flex items-center justify-center hover:bg-primary hover:scale-110 transition-all duration-300"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-800 rounded-full flex items-center justify-center hover:scale-110 hover:shadow-2xl hover:shadow-purple-600/50 transition-all duration-300"
           >
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button
             onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 w-12 h-12 bg-dark-secondary border border-primary rounded-full flex items-center justify-center hover:bg-primary hover:scale-110 transition-all duration-300"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-800 rounded-full flex items-center justify-center hover:scale-110 hover:shadow-2xl hover:shadow-purple-600/50 transition-all duration-300"
           >
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
 
-          {/* Dots Indicator */}
-          <div className="flex justify-center mt-8 space-x-2">
+          <div className="flex justify-center mt-10 gap-3">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? 'bg-primary w-8'
-                    : 'bg-dark-tertiary hover:bg-primary/50'
+                    ? 'w-12 bg-gradient-to-r from-purple-500 to-purple-800'
+                    : 'w-3 bg-gray-600 hover:bg-purple-400'
                 }`}
               ></button>
             ))}
