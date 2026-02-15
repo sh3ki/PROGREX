@@ -54,94 +54,68 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="relative py-20 bg-dark overflow-hidden">
-      {/* Animated Gradient Overlay */}
-      <motion.div
-        animate={{
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute inset-0 bg-gradient-radial-purple"
-      ></motion.div>
-
-      <div ref={ref} className="relative z-10 container mx-auto px-6">
-        {/* Section Header */}
+    <section id="about" className="section-shell relative">
+      {/* Background Effects */}
+      <div className="absolute top-20 left-0 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-3xl opacity-40" />
+      <div className="absolute bottom-20 right-0 w-[500px] h-[500px] bg-purple-700/15 rounded-full blur-3xl opacity-40" />
+      
+      <div ref={ref} className="section-container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="section-header"
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 bg-gradient-to-r from-white to-accent bg-clip-text text-transparent">
-            About ProgreX
+          <span className="section-badge">Our Story</span>
+          <h2 className="section-title">
+            About <span className="section-title-gradient">ProgreX</span>
           </h2>
+          <p className="section-subtitle">
+            A software company focused on product quality, execution speed, and long-term partnerships.
+          </p>
         </motion.div>
 
-        {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Company Description */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="space-y-6 glass-card-premium p-8 md:p-10"
           >
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg text-gray-300 leading-relaxed"
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="text-base md:text-lg text-slate-200 leading-relaxed"
             >
-              At ProgreX, we're not just building technology—we're crafting the future. Our team of 
-              innovative engineers, designers, and strategists work tirelessly to deliver solutions 
-              that don't just meet expectations, they exceed them.
+              ProgreX helps companies turn complex ideas into clear, scalable software products. We blend product strategy, engineering, and design to build systems that are both user-friendly and business-ready.
             </motion.p>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg text-gray-300 leading-relaxed"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-base md:text-lg text-slate-300 leading-relaxed"
             >
-              Founded with a vision to transform businesses through intelligent technology, we've 
-              grown into a trusted partner for organizations worldwide. Our mission is simple: 
-              empower businesses with cutting-edge solutions that drive measurable success.
+              From early discovery to deployment and optimization, our team works closely with clients to deliver outcomes that are measurable: faster operations, better customer experiences, and stronger digital foundations.
             </motion.p>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-lg text-gray-300 leading-relaxed"
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="text-base md:text-lg text-slate-300 leading-relaxed"
             >
-              We believe in collaboration, innovation, and excellence. Every project we undertake 
-              is an opportunity to push boundaries and create something extraordinary. Our values 
-              guide everything we do—from the code we write to the relationships we build.
+              We prioritize thoughtful architecture, clean implementation, and transparent communication—so teams can move faster today and stay flexible tomorrow.
             </motion.p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="text-lg text-gray-300 leading-relaxed"
-            >
-              Whether you're a startup looking to disrupt an industry or an enterprise seeking 
-              digital transformation, ProgreX has the expertise and passion to bring your vision 
-              to life.
-            </motion.p>
-
-            {/* Team Link */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 1 }}
+              transition={{ duration: 0.6, delay: 0.55 }}
             >
-              <a href="#" className="inline-flex items-center text-primary-light hover:text-accent transition-colors duration-300 font-semibold text-lg">
-                Meet Our Team
+              <a href="#contact" className="inline-flex items-center text-primary-light hover:text-accent transition-colors duration-300 font-semibold text-base md:text-lg">
+                Work With ProgreX
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -149,48 +123,59 @@ export default function About() {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Stats */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
             className="grid grid-cols-2 gap-6"
           >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-dark-secondary border border-dark-tertiary rounded-2xl p-8 text-center hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
-              >
+            {stats.map((stat, index) => {
+              const gradients = [
+                'from-purple-400 to-purple-700',
+                'from-purple-500 to-purple-800',
+                'from-purple-400 to-purple-800',
+                'from-purple-600 to-purple-900',
+              ];
+              return (
                 <motion.div
-                  initial={{ scale: 1 }}
-                  whileHover={{ scale: 1.1 }}
-                  className="text-5xl font-bold bg-gradient-to-r from-primary-light to-accent bg-clip-text text-transparent mb-3"
+                  key={stat.label}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                  className="gradient-border group cursor-pointer"
                 >
-                  <Counter end={stat.value} suffix={stat.suffix} />
+                  <div className="gradient-border-inner text-center h-full flex flex-col items-center justify-center py-8">
+                    <div className="relative mb-3">
+                      <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index]} rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
+                      <motion.div
+                        initial={{ scale: 1 }}
+                        whileHover={{ scale: 1.1 }}
+                        className="relative text-5xl md:text-6xl font-bold gradient-text"
+                      >
+                        <Counter end={stat.value} suffix={stat.suffix} />
+                      </motion.div>
+                    </div>
+                    <p className="text-gray-400 font-semibold text-sm md:text-base group-hover:text-white transition-colors duration-300">
+                      {stat.label}
+                    </p>
+                  </div>
                 </motion.div>
-                <p className="text-gray-400 font-medium">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
         </div>
 
-        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1.2 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-12"
         >
           <button
             onClick={() => scrollToSection('contact')}
-            className="bg-gradient-purple text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105"
+            className="btn-primary"
           >
-            Learn More About Us
+            Let’s Collaborate
           </button>
         </motion.div>
       </div>
