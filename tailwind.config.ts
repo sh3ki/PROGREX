@@ -9,21 +9,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: '#7C3AED',
-          dark: '#6B46C1',
-          light: '#A855F7',
+        wisteria:   '#CFA3EA',
+        violet:     '#831DC6',
+        chrysler:   '#560BAD',
+        zaffre:     '#3A0CA3',
+        'neon-blue':'#4361EE',
+        brand: {
+          light:  '#CFA3EA',
+          mid:    '#831DC6',
+          deep:   '#560BAD',
+          darker: '#3A0CA3',
+          blue:   '#4361EE',
         },
-        accent: {
-          DEFAULT: '#D8B4FE',
-          bright: '#E9D5FF',
+        surface: {
+          base:    '#050012',
+          DEFAULT: '#0A0225',
+          raised:  '#0F0335',
         },
-        dark: {
-          DEFAULT: '#0F172A',
-          secondary: '#1E293B',
-          tertiary: '#334155',
-        },
-        electric: '#A855F7',
       },
       backgroundImage: {
         'gradient-purple-black': 'linear-gradient(135deg, #7C3AED 0%, #0F172A 100%)',
